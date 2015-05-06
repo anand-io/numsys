@@ -1,7 +1,12 @@
 language: node_js
 node_js:
-  - "0.6"
-  - "0.8"
-  - "0.10"
-  - "0.12"
-  - "io.js"
+- '0.10'
+- '0.12'
+- io.js
+deploy:
+  provider: npm
+  email: plasmashadowx@gmail.com
+  api_key:
+    secure: Je26l2piiAnh0v29f1D6pAXNL6p2hJOeUNsJVMYJALQd9rZUR+V3/PhWvOxn9iRYSK01Wvd6FGiaVMaSrhRtzB4SYNHwCspXsGxgaQ61Sqw5++cLp2MucThYHSNKthe0MBPkJCq5Wq4hvIQcUGy4CP6FqBiD/heJeXmOuWUvWFI=
+  on:
+    branch: master
