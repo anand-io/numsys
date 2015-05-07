@@ -14,6 +14,6 @@ Copyright (c) 2015
  all copies or substantial portions of the Software
  */
 
-module.exports = function(){
-	return "work in progress"
-}
+var num = require("./systems.js");
+
+module.exports = num;
