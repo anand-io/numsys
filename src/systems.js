@@ -2,56 +2,41 @@ numsys = {}
 function Number(value, type){
 	var _me = this;
 	_me.type = type || "decimal";
-	_me.value = value || 0;
-
+	_me.value = parseInt(value, _me.SystemMap[_me.type]) || 0;
 	_me.getValue = function(){
-		if(_me.type == "decimal"){
-			return _me.value;
-		}
-		return _me.value.reverse().join("")
+        return _me.value.toString(_me.SystemMap[_me.type]);
 	}
 }
 
+Number.prototype.SystemMap = {
+   "binary": 2,
+   "decimal": 10,
+   "octal" : 8,
+   "hex"   : 16
+ }
+
 Number.prototype.toBinary= function(){
-   var digits = [];
-   var value  = this.value;
-
-   while(value>0){
-   	  digits.push(value % 2);
-   	  value = Math.floor(value/2);  	  
-   }
-
-   return new Number(digits, "binary");
+    
+   var value = this.value.toString(this.SystemMap["binary"]);
+   return new Number(value, "binary");
 }
 
 Number.prototype.toOctal = function(){
-	   var digits = [];
-       var value  = this.value;
-
-      while(value>0){
-   	  digits.push(value % 8);
-   	  value = Math.floor(value/8);  	  
-      }
-
-      return new Number(digits, "octal");
+   var value = this.value.toString(this.SystemMap["octal"]);
+   return new Number(value, "octal");
 }
 
 Number.prototype.toHex = function(){
-	var digits = [];
-	var value = this.value;
-	var map = {"10":"A", "11": "B", "12":"C", "13": "D", "14": "E", "15": "F"};
-	while(value>0){
-   	  var bit = value % 16;
-   	  if(bit > 9){
-   	  	digits.push(map[bit.toString()]);
-   	  }
-   	  else{
-   	  	digits.push(bit);
-   	  }
-   	  value = Math.floor(value/16);  	  
-      }
-     return new Number(digits, "hex");
+  var value = this.value.toString(this.SystemMap["hex"]);
+   return new Number(value, "hex");
+}
+
+Number.prototype.toDecimal = function(){
+  var value = this.value.toString(this.SystemMap["decimal"]);
+  return new Number(value);
 }
 
 numsys.Number = Number;
+
+
 module.exports = numsys;

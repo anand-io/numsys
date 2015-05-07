@@ -8,7 +8,8 @@ exports.toBinaryTest = function(beforeExit, assert){
    */
    var a = new num.Number(2);
    var b = a.toBinary();
-   assert.ok(b.getValue() === "10");
+   console.log(typeof(b.getValue()));
+   assert.ok(b.getValue() == "10");
 }
 
 exports.toOctalTest = function(beforeExit, assert){
@@ -21,5 +22,5 @@ exports.toOctalTest = function(beforeExit, assert){
 exports.toHexTest = function(beforeExit, assert){
 	var a = new num.Number(15);
 	var b = a.toHex();
-	assert.ok(b.getValue() == "F")
+	assert.ok(b.getValue() == "f")
 }
