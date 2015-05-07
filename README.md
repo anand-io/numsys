@@ -35,6 +35,6 @@
 ## RoadMap
 
 - [x] Implement Number System
-- []  Predicting AP patterns
-- []  Predicting GP patterns
+- [ ]  Predicting AP patterns
+- [ ]  Predicting GP patterns
    
