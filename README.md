@@ -13,11 +13,10 @@
 ## Number System:
    
    Supports 4 major number systems such as
-   
-   1) Decimal
-   2) Octal
-   3) Hexadecimal
-   4) Binary
+   - Decimal
+   - Octal
+   - Hexadecimal
+   - Binary
    
    ```javascript
    var ns = require('numsys');
@@ -32,5 +31,10 @@
    console.log(num.toHex().getValue()); // return a hex value
    
    ```
-   
+
+## RoadMap
+
+- [x] Implement Number System
+- []  Predicting AP patterns
+- []  Predicting GP patterns
    
