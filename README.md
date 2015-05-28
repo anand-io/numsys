@@ -32,9 +32,30 @@
    
    ```
 
+## Predict AP Series
+ 
+ ```javascript
+    var ns = require('numsys');
+
+    var num = ns.LinearSeries([1,2,3]);
+
+    //finding the series look up sum
+
+    var num = ns.LinearSeries.prototype.findSum(1, 5, 1000);
+    var product = ns.LinearSeries.prototype.findProduct(1,5, 2000);
+    
+    //Generating AP Series
+    var series = ns.LinearSeries.prototype.produce(1, 2, 10);
+    console.log(series.next());
+    console.log(series.prev()); //view the previous step
+    console.log(series.prev(true)); // reset to previous step
+    console.log(series.getValues());
+ ```
+
 ## RoadMap
 
 - [x] Implement Number System
-- [ ]  Predicting AP patterns
+- [x]  Predicting AP patterns
 - [ ]  Predicting GP patterns
+- [ ]  Adding Math Serieses
    
