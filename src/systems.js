@@ -41,7 +41,7 @@ numsys.Number = Number;
 
 
 
-function Series(numlist) {
+function LinearSeries(numlist) {
     function isString(e, i, a){
       return typeof(e) != "string";
     }
@@ -60,14 +60,15 @@ function Series(numlist) {
     }
 }
 
-Series.prototype.sum = function() {
+LinearSeries.prototype.sum = function() {
     var _me = this;
     return (function() {
         return (_me.length * (_me.start + _me.end)) / 2;
     })();
 }
 
-Series.prototype.findSum = function(firstnumber, difference, length) {
+
+LinearSeries.prototype.findSum = function(firstnumber, difference, length) {
 
     //The aryabatta function
     return (function() {
@@ -80,7 +81,7 @@ Series.prototype.findSum = function(firstnumber, difference, length) {
     })();
 }
 
-Series.prototype.findProduct = function(firstnumber, difference, length){
+LinearSeries.prototype.findProduct = function(firstnumber, difference, length){
    
    // http://en.wikipedia.org/wiki/Lanczos_approximation
    return (function(){
@@ -95,11 +96,37 @@ Series.prototype.findProduct = function(firstnumber, difference, length){
    })();
 }
 
-Series.prototype.produce = function(firstnumber, difference, length){
-   //for inheritance.
+LinearSeries.prototype.produce = function(firstnumber, difference, length){
+   var list = []
+   var step = 1;
+   var current_value = 0;
+
+   return {
+       next: function(){
+           current_value = firstnumber+ (step * difference);
+           step = step + 1;
+           return current_value;
+       },
+       prev: function(cursor_change){
+             if (!!current_change){
+              current_value = current_value - difference;
+              step = step - 1;
+              return current_value;
+             }
+             return current_value - difference;
+       },
+       getValues: function(){
+         var list = []
+         var self = this;
+         while(step <= length){
+            list.append(self.next())
+         }
+         return list;
+       }
+   }    
 }
 
-numsys.Series = Series;
+numsys.LinearSeries = LinearSeries;
 
 
 

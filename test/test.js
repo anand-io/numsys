@@ -8,7 +8,6 @@ exports.toBinaryTest = function(beforeExit, assert){
    */
    var a = new num.Number(2);
    var b = a.toBinary();
-   console.log(typeof(b.getValue()));
    assert.ok(b.getValue() == "10");
 }
 
@@ -23,4 +22,20 @@ exports.toHexTest = function(beforeExit, assert){
 	var a = new num.Number(15);
 	var b = a.toHex();
 	assert.ok(b.getValue() == "f")
+}
+
+exports.TestSeriesSum = function(beforeExit, assert){
+  var a = new num.LinearSeries([1,2,3]);
+  assert.ok(a.sum()=== 6);
+}
+
+exports.TestProduce = function(beforeExit, assert){
+  var a = num.LinearSeries.prototype.produce(1, 2, 10);
+  assert.ok(a.next() == 3);
+  assert.ok(a.next() == 5);
+}
+
+exports.TestProduct = function(beforeExit, assert){
+  var product = num.LinearSeries.prototype.findProduct(1,1,5);
+  assert.ok(parseInt(product) == 120);
 }
