@@ -1,6 +1,6 @@
 {
   "name": "numsys",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Number System parser",
   "main": "index.js",
   "scripts": {

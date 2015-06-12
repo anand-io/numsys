@@ -1,7 +1,7 @@
 var num = require('../src/numsys.js');
 
 exports.toBinaryTest = function(beforeExit, assert){
-   
+
    /*
      Test whether a given decimal number is converted to
      proper binary number or not.
@@ -37,5 +37,6 @@ exports.TestProduce = function(beforeExit, assert){
 
 exports.TestProduct = function(beforeExit, assert){
   var product = num.LinearSeries.prototype.findProduct(1,1,5);
+  console.log(product);
   assert.ok(parseInt(product) == 120);
 }

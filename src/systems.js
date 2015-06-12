@@ -82,7 +82,7 @@ LinearSeries.prototype.findSum = function(firstnumber, difference, length) {
 }
 
 LinearSeries.prototype.findProduct = function(firstnumber, difference, length){
-   
+
    // http://en.wikipedia.org/wiki/Lanczos_approximation
    return (function(){
       var f = require('gamma');
@@ -108,7 +108,7 @@ LinearSeries.prototype.produce = function(firstnumber, difference, length){
            return current_value;
        },
        prev: function(cursor_change){
-             if (!!current_change){
+             if (!!cursor_change){
               current_value = current_value - difference;
               step = step - 1;
               return current_value;
@@ -123,11 +123,66 @@ LinearSeries.prototype.produce = function(firstnumber, difference, length){
          }
          return list;
        }
-   }    
+   }
 }
 
 numsys.LinearSeries = LinearSeries;
 
+
+function GeoMetricSeries(){
+}
+
+GeoMetricSeries.prototype.sum = function(start, difference, length){
+
+   //formula a*(1-r^n)/(1-r)
+   var a = start;
+   var r = difference;
+   var n = length;
+   var result = (start*(1-Math.pow(r,n))/(1-r));
+   return result;
+}
+
+GeoMetricSeries.prototype.product = function(start, difference, length){
+  var a = start;
+  var r = difference;
+  var n = length;
+  var result = start * Math.pow(r, n);
+
+  result = Math.pow(result, ((n+1)/2));
+  console.log(result);
+  return result;
+}
+
+GeoMetricSeries.prototype.generate = function(firstnumber, difference, length){
+  var list = [];
+  var step = 1;
+  var current_value = 1;
+
+  return {
+     next: function(){
+       current_value = firstnumber * Math.pow(difference, step);
+       step = step + 1;
+       return current_value;
+     },
+     prev: function(revert){
+       var value = current_value/difference;
+       if(!!revert){
+         current_value = value;
+         step = step -1;
+       }
+       return value;
+     },
+     getValues: function(){
+       var values = [];
+       while(step<length){
+         values.push(this.next());
+       }
+       return values;
+     }
+  }
+}
+
+numsys.GeoMetricSeries = GeoMetricSeries;
 
 
 
